@@ -94,6 +94,7 @@ class Outlook:
         count: int = 1,
         key=None,
         proxies: Union[None, str, List[str]] = None,
+        account: str = None
     ) -> None:
         """
         Creates Outlook email accounts.
@@ -101,6 +102,7 @@ class Outlook:
         :param count: Number of accounts to be created. Defaults to 1.
         :param key: Capsolver Api Key for solving captchas automatically. Defaults to None.
         :param proxies: Optional proxy server or list of proxy servers to be used for account creation.
+        :param account: 指定邮箱账号
         """
         if isinstance(proxies, str):
             proxies = [proxies]
@@ -126,7 +128,10 @@ class Outlook:
                 data["captcha"] = False
                 data["capsolver_apikey"] = None
 
-            data["account"] = create_user(data["proxy"])
+            if account:
+                data["account"] = account
+            else:
+                data["account"] = create_user(data["proxy"])
 
             return data
 

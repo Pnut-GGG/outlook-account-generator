@@ -115,7 +115,6 @@ def create_accounts(driver: AntiDetectDriver, data):
         def sign_up():
 
             type_email(driver, email)
-            
 
             press_next_btn(driver)
             
